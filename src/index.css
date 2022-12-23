@@ -4,6 +4,7 @@
   --light-bg: #24baef;
   --main-font: 'Montserrat', sans-serif;
   --font-color:#fff;
+  --border-color: #a8a8a83d
 }
 body{
   background-color: var(--bg--color);
@@ -20,10 +21,38 @@ body{
   position: fixed;
   inset: 0;
   background-color:rgba(36, 186, 239 ,50%) ;
+  z-index: 999;
 }
 .content{
   min-height: 79vh
 }
+/* movie card */
+.movie_card {
+  margin-bottom: 20px;
+}
+.movie_card h3{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.movie_card img{
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+.movie_card .vote{
+  border-top-right-radius: 5px;
+  background-color: var(--light-bg);
+}
+/* border */
+.brdr{
+  height: 1.4px;
+  background-color: var(--border-color);
+}
+a{
+  color: var(--font-color);
+  text-decoration: none;
+}
+/* loader */
 .lds-default {
   display: inline-block;
   position: absolute;

@@ -11,6 +11,9 @@ import Notfound from './Notfound/Notfound';
 import { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import Profile from './profile/Profile';
+import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
+import ItemDetails from './ItemDetails/ItemDetails';
+import { Offline, Online } from 'react-detect-offline';
 export default function App() {
   const [userData, setUserData] = useState(null);
   useEffect(() => {
@@ -27,16 +30,24 @@ export default function App() {
   }
   let routes = createBrowserRouter([
       {path:'/' , element:<Layout setUserData={setUserData} userData={userData}/> , children:[
-          {path:'home', element:<Home/>},
-          {path:'movies', element:<Movies/>},
-          {path:'tv', element:<Tv/>},
-          {path:'people', element :<People/>},
-          {path:'profile', element :<Profile userData={userData}/>},
-          {path:'login', element:<Login  saveUsersData={saveUserData}/> },
+          {index:true, element:<ProtectedRoute userData={userData}> <Home/></ProtectedRoute>},
+          {path:'movies', element:<ProtectedRoute userData={userData}><Movies/></ProtectedRoute>},
+          {path:'tv', element:<ProtectedRoute userData={userData}><Tv userData={userData}/></ProtectedRoute>},
+          {path:'people', element :<ProtectedRoute userData={userData}><People/></ProtectedRoute>},
+          {path:'profile', element :<ProtectedRoute userData={userData}><Profile userData={userData}/></ProtectedRoute>},
+          {path:'itemDetails/:id/:media_t\ype', element :<ProtectedRoute userData={userData}><ItemDetails /></ProtectedRoute>},
+          {path:'login', element:<Login  saveUsersData={saveUserData}/>},
           {path:'register', element:<Register/>},
           {path:'*', element:<Notfound/>},
       ]}
   ])
-  return <RouterProvider router={routes} />
+  return<>
+    {/* <Online>Only shown when you're online</Online> */}
+    <Offline>
+      Only shown offline (surprise!)
+    </Offline>
+  
+  <RouterProvider router={routes} />
+  </> 
 }
 

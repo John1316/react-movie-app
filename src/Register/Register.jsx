@@ -4,6 +4,9 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 export default function Register() {
   let navigate = useNavigate();
+  if(localStorage.getItem('token')){
+    navigate('/')
+  }
   const [errorList, setErrorList] = useState([]);
   const [isLoading, setisLoading] = useState(false)
   const [successMessage, setsuccessMessage] = useState('');
