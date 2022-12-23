@@ -2,7 +2,7 @@ import axios, { Axios } from 'axios';
 import Joi from 'joi';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-export default function Login() {
+export default function Login({saveUsersData}) {
   let navigate = useNavigate();
   const [errorList, setErrorList] = useState([]);
   const [isLoading, setisLoading] = useState(false)
@@ -26,13 +26,14 @@ export default function Login() {
       let {data} = await axios.post(`https://route-movies-api.vercel.app/signin`, user)
       if (data.message == 'success') {
 
-        setsuccessMessage('success')
         setErrorMessage('')
         localStorage.setItem('token', data.token)
+        // 
+        saveUsersData();
         setisLoading(false)
-        setTimeout(() => {
-          navigate('/home')
-        }, 1500);
+        navigate('/home')
+        // setTimeout(() => {
+        // }, 1000);
       }else{
 
         setErrorMessage(data.message)
