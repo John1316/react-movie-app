@@ -59,7 +59,7 @@ export default function Navbar({userData, logOut}) {
                 {userData? <><li className="nav-item">
                     <Link to="profile" className="nav-link">Profile</Link>
                 </li><li onClick={logOut} className="nav-item">
-                    <span className="nav-link">Logout</span>
+                    <Link className="nav-link">Logout</Link>
                 </li></>  : <>
                 <li className="nav-item">
                     <Link className="nav-link" to="login">Login</Link>

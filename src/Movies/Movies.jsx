@@ -1,17 +1,10 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import MediaItem from '../MediaItem/MediaItem'
 import { Helmet } from "react-helmet";
+import { MediaContext } from '../MediaContext/MediaContext';
 export default function Movies() {
-  const [trendingMovies, setMovies] = useState([])
-  async function getTrending(){
-    let {data}  = await axios.get(`https://api.themoviedb.org/3/trending/movie/week?api_key=64d768e4d0a647d938254dd3d191863f`)
-    setMovies(data.results)
-
-  }
-  useEffect(() => {
-    getTrending()
-  }, [])
+  let {trendingMovies} = useContext(MediaContext);
   
   return (
     <>

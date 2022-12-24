@@ -26,6 +26,18 @@ body{
 .content{
   min-height: 79vh
 }
+/* offline */
+.offline{
+  position: fixed;
+  background-color: #fff;
+  color: #131722;
+  z-index: 999;
+  left: 0;
+  bottom: 100px;
+  padding: 20px ;
+  font-size: 18px;
+  font-weight: 600;
+}
 /* movie card */
 .movie_card {
   margin-bottom: 20px;

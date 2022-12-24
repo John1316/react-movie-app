@@ -8,26 +8,15 @@ import People from './People/People';
 import Login from './Login/Login';
 import Register from './Register/Register';
 import Notfound from './Notfound/Notfound';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import Profile from './profile/Profile';
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
 import ItemDetails from './ItemDetails/ItemDetails';
 import { Offline } from 'react-detect-offline';
+import { AuthContext } from './MediaContext/AuthContext';
 export default function App() {
-  const [userData, setUserData] = useState(null);
-  useEffect(() => {
-    if(localStorage.getItem('token') != null){
-      saveUserData();
-    }
-  }, [])
-  
-  function saveUserData(){
-    let getToken = localStorage.getItem('token');
-    let decodedToken = jwtDecode(getToken)
-    setUserData(decodedToken)
-    console.log(decodedToken);
-  }
+let {userData, setUserData , saveUserData} = useContext(AuthContext);
   let routes = createBrowserRouter([
       {path:'/' , element:<Layout setUserData={setUserData} userData={userData}/> , children:[
           {index:true, element:<ProtectedRoute userData={userData}> <Home/></ProtectedRoute>},
@@ -44,10 +33,11 @@ export default function App() {
   return<>
     {/* <Online>Only shown when you're online</Online> */}
     <Offline>
-      Only shown offline (surprise!)
+      <div className="offline">
+        Your are offline 
+      </div>
     </Offline>
-  
-  <RouterProvider router={routes} />
+        <RouterProvider router={routes} />
   </> 
 }
 

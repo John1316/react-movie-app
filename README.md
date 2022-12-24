@@ -1,5 +1,5 @@
 ### `React movie app`
-this my first react app with big project as calling apis
+This my first react app with big project as calling apis
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
