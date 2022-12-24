@@ -13,7 +13,7 @@ import jwtDecode from 'jwt-decode';
 import Profile from './profile/Profile';
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
 import ItemDetails from './ItemDetails/ItemDetails';
-import { Offline, Online } from 'react-detect-offline';
+import { Offline } from 'react-detect-offline';
 export default function App() {
   const [userData, setUserData] = useState(null);
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function App() {
           {path:'tv', element:<ProtectedRoute userData={userData}><Tv userData={userData}/></ProtectedRoute>},
           {path:'people', element :<ProtectedRoute userData={userData}><People/></ProtectedRoute>},
           {path:'profile', element :<ProtectedRoute userData={userData}><Profile userData={userData}/></ProtectedRoute>},
-          {path:'itemDetails/:id/:media_t\ype', element :<ProtectedRoute userData={userData}><ItemDetails /></ProtectedRoute>},
+          {path:'itemDetails/:id/:media_type', element :<ProtectedRoute userData={userData}><ItemDetails /></ProtectedRoute>},
           {path:'login', element:<Login  saveUsersData={saveUserData}/>},
           {path:'register', element:<Register/>},
           {path:'*', element:<Notfound/>},
