@@ -34,7 +34,7 @@ export default function Login({saveUsersData}) {
         // 
         saveUsersData();
         setisLoading(false)
-        navigate('/home')
+        navigate('/')
         // setTimeout(() => {
         // }, 1000);
       }else{
